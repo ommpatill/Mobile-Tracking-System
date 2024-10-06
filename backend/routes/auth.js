@@ -63,7 +63,7 @@ router.post('/signup', async (req, res) => {
       isVerified: false, // User must verify email
       verificationToken: crypto.randomBytes(32).toString('hex'), // Generate a unique token
     });
-
+    console.log(newUser)
     // Save the user to the database
     const savedUser = await newUser.save();
 
