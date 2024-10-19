@@ -22,9 +22,9 @@ function Home({ showMapButtonRef, username }) {
 
       {/* Welcome Section */}
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg text-center">
-        <h1 className="text-3xl sm:text-4xl font-bold text-blue-600 mb-4">Welcome to Tracker</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-blue-600 mb-4">Welcome to Trace Point</h1>
         <p className="text-gray-600 mb-6 leading-relaxed">
-          Tracker is a powerful mobile tracking system that helps you stay connected with your devices in real-time.
+          Trace Point is a powerful mobile tracking system that helps you stay connected with your devices in real-time.
           Locate, monitor, and manage your mobile devices effortlessly.
         </p>
 

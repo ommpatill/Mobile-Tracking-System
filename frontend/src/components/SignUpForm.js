@@ -49,9 +49,7 @@ const SignUpForm = () => {
       return;
     }
 
-    console.log("signup handlesubmit.... ", formData
-
-    )
+    console.log("signup handlesubmit.... ", formData)
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signup', formData);
       setSuccess(response.data.message || 'Sign up successful! Please verify your email.');

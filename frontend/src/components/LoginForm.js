@@ -1,4 +1,4 @@
-import React, { useState } from 'react';  
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,31 +20,31 @@ const LoginForm = ({ setUsername, onSuccess }) => {  // Accept onSuccess prop
   });
 
   const [loginData, setLoginData] = useState({
-  
+
     username: 'u',
     password: 'p',
-   
+
   });
 
   const handleSubmit = async (e) => {
     console.log("called...")
     e.preventDefault();
     console.log('Logging in with:', { username, password }); // Log user input
-  
+
     try {
-         const response = await axios.post('http://localhost:5000/api/auth/login', {
-      username, 
-      password,
-    });
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        username,
+        password,
+      });
       //const response = await axios.post('http://localhost:5000/api/auth/login', loginData);
       //const response = await axios.post('http://localhost:5000/api/auth/signuptest', formData);
 
       console.log("response>>>>>>>>>>> ", response)
-  
+
       // Successful login
       setSuccess(response.data.message);
       setError('');
-  
+
       // Store token and username in local storage
       localStorage.setItem('token', response.data.token);
       //setUsername(response.data.username);
@@ -60,7 +60,7 @@ const LoginForm = ({ setUsername, onSuccess }) => {  // Accept onSuccess prop
       setSuccess('');
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
       {/* Username input field */}

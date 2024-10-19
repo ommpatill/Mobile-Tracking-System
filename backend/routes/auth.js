@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const ContactMessage = require('../models/ContactMessage');
 const nodemailer = require('nodemailer'); // For email verification
 const crypto = require('crypto'); // For generating unique verification tokens
 require('dotenv').config(); // Load environment variables
@@ -153,6 +154,24 @@ router.post('/login', async (req, res) => {
 });
 
 
+router.post('/contactUsTest', async (req, res) => {
+  try {
+    console.log("-api hit....1 ", req.body)
+    const { name, email, message } = req.body;
+    const newContactMessage = new ContactMessage({
+      name,
+      email,
+      message
+    });
+
+    console.log("newContactMessage: ", newContactMessage)
+    await newContactMessage.save();
+    res.status(201).json({ message: 'request recorded successfully', newContactMessage });
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 module.exports = router;

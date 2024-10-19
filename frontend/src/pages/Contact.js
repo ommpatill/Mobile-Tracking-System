@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -7,17 +8,33 @@ const Contact = () => {
     message: ''
   });
 
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // Handle form submission logic here (e.g., send data to server)
     console.log('Form Data:', formData);
     alert('Thank you for contacting us!');
     // Clear form after submission
+    
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/contactUsTest', formData);
+      setSuccess(response.data.message || 'Message sent');
+      setError('');
+
+      // Redirect to login page after signup success
+      //navigate('/login'); 
+    } catch (error) {
+      setError(error.response?.data?.message || 'Something went wrong');
+      setSuccess('');
+    }
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -68,6 +85,8 @@ const Contact = () => {
           >
             Send Message
           </button>
+          {error && <p className="mt-4 text-red-500">{error}</p>}
+          {/* {success && <p className="mt-4 text-green-500">{success}</p>} */}
         </form>
       </div>
     </main>
